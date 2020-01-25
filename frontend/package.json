@@ -1,0 +1,58 @@
+{
+  "name": "rockit",
+  "version": "1.0.0",
+  "description": "# Installation Guide * Install Node and NPM on your machine if not already present. [https://nodejs.org/en/] *Installing Node will install NPM alongside* * Run `npm install` in the root folder where you cloned the Rockit GIT repo.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DejanDespot/rockit.git"
+  },
+  "keywords": [],
+  "author": "Dejan Despot <dejandespot7@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DejanDespot/rockit/issues"
+  },
+  "homepage": "https://github.com/DejanDespot/rockit#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.3.2",
+    "file-loader": "^5.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@material-ui/core": "^4.8.0",
+    "@material-ui/icons": "^4.5.1",
+    "axios": "^0.19.0",
+    "classnames": "^2.2.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "howler": "^2.1.2",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "react-input-slider": "^5.1.4",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}

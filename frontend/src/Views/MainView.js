@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import styles from "../Styles/main_view.scss";
-import SignIn from "../Components/SignIn";
+import Login from "../Components/SignIn";
 
 class MainView extends Component {
   render() {
     return (
       <div className={styles.MainView}>
-        <SignIn />
+        <Login />
       </div>
     );
   }
