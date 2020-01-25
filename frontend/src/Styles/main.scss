@@ -1,6 +1,10 @@
 @import "./globals";
 @import "./meyer_reset";
 
+:root {
+  --gradient: linear-gradient(45deg, #845ec2, #d65db1, #ff6f91, #ff9671);
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -9,27 +13,18 @@ html {
     overflow: hidden;
 
     * {
-      font-family: 'Roboto', sans-serif !important;
+      font-family: "Roboto", sans-serif !important;
     }
 
     width: 100%;
     height: 100%;
   }
-}
 
-//--fade animations--//
-
-.fade-enter {
-  opacity: 0.01;
-}
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms ease-in;
-}
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 1000ms ease-in;
+  .appContainer {
+    width: 100%;
+    height: 100%;
+    background-image: var(--gradient);
+    background-size: 300%;
+    animation: bg-animation 14s infinite alternate;
+  }
 }

@@ -8,9 +8,11 @@ import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import screenReducer from "./Store/reducers/screen";
+import authReducer from "./Store/reducers/auth";
 
 const rootReducer = combineReducers({
-  screen: screenReducer
+  screen: screenReducer,
+  auth: authReducer
 });
 
 const composeEnhancers =

@@ -1,10 +1,13 @@
 @import "./globals.scss";
 
 .MainView {
-    height: 100vh;
-    background-image: url(../Assets/images/neon.png);
-    background-size: cover;
-    background-attachment: fixed;
-    padding-top: 7%;
-    // color: white;
+  height: 100vh;
+  display: flex;
+
+  main {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }

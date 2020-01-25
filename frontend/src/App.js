@@ -1,10 +1,10 @@
-import React, { Component } from "react";
 import { hot } from "react-hot-loader/root";
+import React, { Component } from "react";
 import MainView from "./Views/MainView";
 import { debounce } from "lodash";
 import { connect } from "react-redux";
 import * as actions from "./Store/actions/screen";
-import MobileView from "./Views/MobileView";
+import styles from "./Styles/main.scss";
 
 class App extends Component {
   componentDidMount() {
@@ -18,8 +18,8 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ width: "100%", height: "100%" }}>
-        {this.props.isMobile ? <MobileView /> : <MainView />}
+      <div className={styles.appContainer}>
+        <MainView />
       </div>
     );
   }

@@ -48,6 +48,15 @@
   }
 }
 
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
 .fadeIn {
   @include animated;
   -webkit-animation-name: fadeIn;
