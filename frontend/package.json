@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DejanDespot/rockit.git"
+    "url": "git+https://github.com/DejanDespot/login_exercise.git"
   },
   "keywords": [],
   "author": "Dejan Despot <dejandespot7@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DejanDespot/rockit/issues"
+    "url": "https://github.com/DejanDespot/login_exercise/issues"
   },
-  "homepage": "https://github.com/DejanDespot/rockit#readme",
+  "homepage": "https://github.com/DejanDespot/login_exercise",
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",

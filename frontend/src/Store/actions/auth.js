@@ -6,27 +6,27 @@ import {
 } from "../types/authTypes";
 
 const logIn = loginData => dispatch => {
-  loginRequested();
+  dispatch(loginRequested());
   axiosInstance
-    .post("/login", {
-      loginData
-    })
-    .then(response => loginSuccess(response.data))
-    .catch(error => loginFailure(error));
+    .post("/login", loginData)
+    .then(response => dispatch(loginSuccess(response.data)))
+    .catch(error => dispatch(loginFailure(error)));
 };
 
 const loginRequested = () => ({
   type: LOGIN_REQUESTED
 });
 
-const loginSuccess = userData => ({
+const loginSuccess = response => ({
   type: LOGIN_SUCCES,
-  payload: userData
+  payload: response.userData
 });
 
-const loginFailure = error => ({
-  type: LOGIN_FAILURE,
-  payload: { error }
-});
+const loginFailure = error => {
+  return {
+    type: LOGIN_FAILURE,
+    payload: error.response.data.message || "Login not successful!"
+  };
+};
 
 export { logIn };
