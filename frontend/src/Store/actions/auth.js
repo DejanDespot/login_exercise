@@ -2,7 +2,8 @@ import { axiosInstance } from "../../Utils/restApi";
 import {
   LOGIN_FAILURE,
   LOGIN_REQUESTED,
-  LOGIN_SUCCES
+  LOGIN_SUCCES,
+  CLOSE_SNACK
 } from "../types/authTypes";
 
 const logIn = loginData => dispatch => {
@@ -29,4 +30,10 @@ const loginFailure = error => {
   };
 };
 
-export { logIn };
+const closeSnack = () => {
+  return {
+    type: CLOSE_SNACK
+  };
+};
+
+export { logIn, closeSnack };

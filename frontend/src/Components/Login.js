@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Copyright() {
   return (
@@ -30,7 +31,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(-20),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    padding: theme.spacing(4),
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    boxShadow: "5px 7px 12px 0px rgba(0,0,0,0.25)"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -41,17 +45,32 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
+    margin: theme.spacing(3, 0, 2),
+    minHeight: 36
+  },
+  input: {
+    marginBottom: theme.spacing(2)
+  },
+  helperText: {
+    position: "absolute",
+    bottom: -18,
+    fontWeight: "bold"
+  },
+  error: {
+    color: theme.palette.error.main,
+    textAlign: "center",
+    position: "absolute",
+    marginTop: -4
   }
 }));
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email")
-    .required("Email is required"),
+    .email("Invalid email!")
+    .required("Email is required!"),
   password: Yup.string()
-    .min(7, "Your password must be at least 7 characters long!")
-    .required("Password is required")
+    .min(7, "Password must be at least 7 characters long!")
+    .required("Password is required!")
 });
 
 export default function Login(props) {
@@ -68,7 +87,7 @@ export default function Login(props) {
 
   const classes = useStyles();
 
-  const { handleChange, handleBlur } = formik;
+  const { handleChange, handleBlur, errors, touched } = formik;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -94,6 +113,10 @@ export default function Login(props) {
             value={formik.values.email}
             onBlur={handleBlur}
             onChange={handleChange}
+            error={!!(touched.email && errors.email)}
+            helperText={errors.email && touched.email && errors.email}
+            className={classes.input}
+            FormHelperTextProps={{ className: classes.helperText }}
           />
           <TextField
             variant="outlined"
@@ -108,6 +131,10 @@ export default function Login(props) {
             value={formik.values.password}
             onBlur={handleBlur}
             onChange={handleChange}
+            error={!!(touched.password && errors.password)}
+            helperText={errors.password && touched.password && errors.password}
+            className={classes.input}
+            FormHelperTextProps={{ className: classes.helperText }}
           />
           <Button
             type="submit"
@@ -116,8 +143,17 @@ export default function Login(props) {
             color="secondary"
             className={classes.submit}
           >
-            Login
+            {props.loading ? (
+              <CircularProgress size={20} color="inherit" />
+            ) : (
+              <div>Login</div>
+            )}
           </Button>
+          {props.error && (
+            <Typography variant="body1" className={classes.error}>
+              {props.error}
+            </Typography>
+          )}
         </form>
       </div>
       <Box mt={8}>

@@ -19,18 +19,21 @@ app.get("/", (req, res) => {
 app.post("/login", (req, res) => {
   console.log(req.body);
   let { email, password } = req.body;
-  if (email === defaultEmail && password === defaultPassword) {
-    res.send({
-      userData: {
-        email: defaultEmail,
-        password: defaultPassword
-      }
-    });
-  } else {
-    res.status(401).send({
-      message: "Incorrect credentials !"
-    });
-  }
+  // simulate server waiting for auth procedure
+  setTimeout(() => {
+    if (email === defaultEmail && password === defaultPassword) {
+      res.send({
+        userData: {
+          email: defaultEmail,
+          password: defaultPassword
+        }
+      });
+    } else {
+      res.status(401).send({
+        message: "Incorrect credentials !"
+      });
+    }
+  }, 2000);
 });
 
 // app initiator
