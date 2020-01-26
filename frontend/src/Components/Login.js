@@ -12,8 +12,11 @@ import Container from "@material-ui/core/Container";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import styles from "../Styles/globals.scss";
+import classNames from "classnames";
 
-function Copyright() {
+// copyright footer
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -24,8 +27,9 @@ function Copyright() {
       {"."}
     </Typography>
   );
-}
+};
 
+// define materialUI styles
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(-20),
@@ -73,7 +77,7 @@ const LoginSchema = Yup.object().shape({
     .required("Password is required!")
 });
 
-export default function Login(props) {
+const Login = props => {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -92,7 +96,7 @@ export default function Login(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div className={classNames(classes.paper, styles.fadeInSlow)}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -161,4 +165,6 @@ export default function Login(props) {
       </Box>
     </Container>
   );
-}
+};
+
+export default Login;

@@ -11,7 +11,7 @@ class MainView extends Component {
     const { logIn, loading, error, isSnackOpened, closeSnack } = this.props;
 
     return (
-      <div className={styles.MainView}>
+      <div className={styles.mainView}>
         <Login login={logIn} loading={loading} error={error} />
         <Snackbar
           open={isSnackOpened}

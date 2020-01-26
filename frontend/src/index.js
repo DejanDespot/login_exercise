@@ -1,17 +1,14 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-// import styles from "./Styles/main.scss";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import screenReducer from "./Store/reducers/screen";
 import authReducer from "./Store/reducers/auth";
 
 const rootReducer = combineReducers({
-  screen: screenReducer,
   auth: authReducer
 });
 
@@ -20,6 +17,7 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : null || compose;
 
+// define redux provider store
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk, logger))
