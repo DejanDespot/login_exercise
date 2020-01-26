@@ -10,7 +10,14 @@ const logIn = loginData => dispatch => {
   dispatch(loginRequested());
   axiosInstance
     .post("/login", loginData)
-    .then(response => dispatch(loginSuccess(response.data)))
+    .then(response => {
+      let data = response.data.userData;
+      if (data.email && data.password) {
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("password", data.password);
+      }
+      dispatch(loginSuccess(data));
+    })
     .catch(error => dispatch(loginFailure(error)));
 };
 
@@ -18,9 +25,9 @@ const loginRequested = () => ({
   type: LOGIN_REQUESTED
 });
 
-const loginSuccess = response => ({
+const loginSuccess = userData => ({
   type: LOGIN_SUCCES,
-  payload: response.userData
+  payload: userData
 });
 
 const loginFailure = error => {
