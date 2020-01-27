@@ -5,6 +5,14 @@ import * as actions from "../Store/actions/auth";
 import { connect } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import HomePage from "../Containers/HomePage";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
 class MainView extends Component {
   render() {
@@ -12,7 +20,15 @@ class MainView extends Component {
 
     return (
       <div className={styles.mainView}>
-        <Login login={logIn} loading={loading} error={error} />
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
+        <Switch>
+          <Route path="/login">
+            <Login login={logIn} loading={loading} error={error} />
+          </Route>
+          <Route path="/homepage">
+            <HomePage />
+          </Route>
+        </Switch>
         <Snackbar
           open={isSnackOpened}
           autoHideDuration={6000}
@@ -39,14 +55,15 @@ const mapStateToProps = state => {
   return {
     error: state.auth.error,
     loading: state.auth.loading,
-    isSnackOpened: state.auth.isSnackOpened
+    isSnackOpened: state.auth.isSnackOpened,
+    loggedIn: state.auth.loggedIn
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     logIn: loginData => {
-      dispatch(actions.logIn(loginData));
+      dispatch(actions.logIn(loginData, ownProps.history));
     },
     closeSnack: () => {
       dispatch(actions.closeSnack());
@@ -54,4 +71,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MainView)
+);

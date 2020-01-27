@@ -7,7 +7,7 @@ import {
 } from "../types/authTypes";
 
 // default Auth function
-const logIn = loginData => dispatch => {
+const logIn = (loginData, history) => dispatch => {
   // request login action to show a loader
   dispatch(loginRequested());
   axiosInstance
@@ -19,7 +19,7 @@ const logIn = loginData => dispatch => {
         localStorage.setItem("email", data.email);
         localStorage.setItem("password", data.password);
       }
-      dispatch(loginSuccess(data));
+      dispatch(loginSuccess(data, history));
     })
     .catch(error => dispatch(loginFailure(error)));
 };
@@ -28,10 +28,13 @@ const loginRequested = () => ({
   type: LOGIN_REQUESTED
 });
 
-const loginSuccess = userData => ({
-  type: LOGIN_SUCCES,
-  payload: userData
-});
+const loginSuccess = (userData, history) => {
+  history.push("/homepage");
+  return {
+    type: LOGIN_SUCCES,
+    payload: userData
+  };
+};
 
 const loginFailure = error => {
   return {
