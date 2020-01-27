@@ -39,7 +39,8 @@ const loginSuccess = (userData, history) => {
 const loginFailure = error => {
   return {
     type: LOGIN_FAILURE,
-    payload: error.response.data.message || "Login not successful!"
+    payload:
+      (error.response && error.response.data.message) || "Login not successful!"
   };
 };
 
